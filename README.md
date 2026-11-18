@@ -44,4 +44,14 @@ To translate a UTF-8 text or SGM file one sentence per line:
 python infer.py --input raw_data/test/newstest2018-enzh-src.en.sgm
 ```
 
+For repeated translations, start one interactive session. The model and
+tokenizers are loaded only once:
+
+```bash
+python infer.py --interactive
+```
+
+At the prompt, enter sentences and press Enter. Exit with `exit`, `quit`, `q`,
+or press Ctrl-D.
+
 Use `--checkpoint` to load a checkpoint at another path.

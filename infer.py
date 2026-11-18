@@ -15,6 +15,11 @@ def parse_args() -> argparse.Namespace:
     group.add_argument("--input", help="A UTF-8 text/SGM file, one sentence per line.")
     parser.add_argument("--checkpoint", default=config.MODEL_DIR)
     parser.add_argument("--max-len", type=int, default=config.max_len)
+    group.add_argument(
+        "--interactive",
+        action="store_true",
+        help="Enter source sentences repeatedly; enter exit, quit, or q to stop.",
+    )
     return parser.parse_args()
 
 
@@ -57,6 +62,20 @@ def main() -> None:
     source_tokenizer = spm.SentencePieceProcessor(model_file=config.VOCAB_EN)#type: ignore
     target_tokenizer = spm.SentencePieceProcessor(model_file=config.VOCAB_ZH)#type: ignore
     model = load_model(args.checkpoint)
+
+    if args.interactive:
+        print("Enter a sentence to translate. Enter exit, quit, or q to stop.")
+        while True:
+            try:
+                line = input("> ").strip()
+            except EOFError:
+                break
+            if line.lower() in {"exit", "quit", "q", "/exit", "/quit"}:
+                break
+            if line:
+                print(translate(model, line, source_tokenizer, target_tokenizer, args.max_len))
+        return
+
     lines = [args.text] if args.text is not None else open(args.input, encoding="utf-8")
     try:
         for line in lines:
