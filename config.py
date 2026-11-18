@@ -34,10 +34,11 @@ beam_size = 5
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "raw_data/training-parallel-nc-v13")
+TEST_DIR = os.path.join(BASE_DIR, "raw_data/test")
 TRAIN_EN = os.path.join(DATA_DIR, "news-commentary-v13.zh-en.en")
 TRAIN_ZH = os.path.join(DATA_DIR, "news-commentary-v13.zh-en.zh")
-TEST_EN = os.path.join(DATA_DIR, "raw_data/test/newstest2018-enzh-src.en.sgm")
-TEST_ZH = os.path.join(DATA_DIR, "raw_data/test/newstest2018-zhen-src.zh.sgm")
+TEST_EN = os.path.join(TEST_DIR, "newstest2018-enzh-src.en.sgm")
+TEST_ZH = os.path.join(TEST_DIR, "newstest2018-enzh-ref.zh.sgm")
 VOCAB_EN = os.path.join(BASE_DIR, "tokenizer/en_spm.model")
 VOCAB_ZH = os.path.join(BASE_DIR, "tokenizer/zh_spm.model")
 MODEL_DIR = os.path.join(BASE_DIR, "weights/transformer.pt")

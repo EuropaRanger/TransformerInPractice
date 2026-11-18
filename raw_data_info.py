@@ -1,4 +1,5 @@
 import os
+import config
 
 def get_corpus_info(path):
     if not os.path.exists(path):
@@ -21,5 +22,5 @@ def get_corpus_info(path):
     print("含 U+FFFD 的行数:", lines_with_fffd)
 
 if __name__ =="__main__":
-    get_corpus_info("./raw_data/training-parallel-nc-v13/news-commentary-v13.zh-en.zh")
-    get_corpus_info("./raw_data/training-parallel-nc-v13/news-commentary-v13.zh-en.en")
+    get_corpus_info(config.TRAIN_EN)
+    get_corpus_info(config.TRAIN_ZH)
